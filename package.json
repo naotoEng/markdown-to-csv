@@ -1,0 +1,70 @@
+{
+  "name": "markdown-to-csv",
+  "displayName": "markdown-to-csv",
+  "description": "You can preview and download the markdown language in CSV format.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdown-to-csv.PreviewCSV",
+        "title": "Preview CSV"
+      },
+      {
+        "command": "markdown-to-csv.DownloadCSV",
+        "title": "Download CSV"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorLangId == markdown",
+          "command": "markdown-to-csv.PreviewCSV",
+          "group": "navigation"
+        },
+        {
+          "when": "editorLangId == markdown",
+          "command": "markdown-to-csv.DownloadCSV",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.77.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^8.36.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5",
+    "@vscode/test-electron": "^2.3.0"
+  },
+  "dependencies": {
+    "@types/papaparse": "^5.3.7",
+    "iconv-lite": "^0.6.3",
+    "markdown-it": "^13.0.1",
+    "markdown-it-table": "^2.0.4",
+    "papaparse": "^5.4.1"
+  }
+}
